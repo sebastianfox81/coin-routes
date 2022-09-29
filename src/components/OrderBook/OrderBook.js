@@ -34,13 +34,27 @@ const OrderBook = ({ aggregation, handleAggChange, bidsArr, asksArr }) => {
     setBidsRows(bidsRows)
   }, [asksArr, bidsArr, aggregation])
 
-  const spread = (bidsRows?.[0]?.[0] - asksRows?.[0]?.[0]) || 0
+  const spread = bidsRows?.[0]?.[0] - asksRows?.[0]?.[0] || 0
 
   return (
     <div style={{ marginBottom: '100px' }}>
-      <TableContainer component={Paper} sx={{ backgroundColor: 'black', minHeight: '900px' }}>
+      <TableContainer
+        component={Paper}
+        sx={{ backgroundColor: 'black', minHeight: '900px' }}
+      >
         <Table aria-label='simple table'>
           <TableHead>
+            <TableRow>
+              <TableCell data-testid='agg-text' sx={{ color: 'white' }}>
+                Aggregation
+              </TableCell>
+              <TableCell>
+                <AggDropdown
+                  aggregation={aggregation}
+                  handleAggChange={handleAggChange}
+                />
+              </TableCell>
+            </TableRow>
             <TableRow>
               <TableCell data-testid='size-text' sx={{ color: 'white' }}>
                 Market Size
@@ -56,8 +70,12 @@ const OrderBook = ({ aggregation, handleAggChange, bidsArr, asksArr }) => {
                 key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell sx={{ color: 'white' }}>{isNaN(bid?.[1]) ? '' : bid?.[1]}</TableCell>
-                <TableCell sx={{ color: 'red' }}>{isNaN(bid?.[0]) ? '' : bid?.[0]}</TableCell>
+                <TableCell sx={{ color: 'white' }}>
+                  {isNaN(bid?.[1]) ? '' : bid?.[1]}
+                </TableCell>
+                <TableCell sx={{ color: 'red' }}>
+                  {isNaN(bid?.[0]) ? '' : bid?.[0]}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -76,22 +94,15 @@ const OrderBook = ({ aggregation, handleAggChange, bidsArr, asksArr }) => {
                   key={index}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell sx={{ color: 'white' }}>{isNaN(ask?.[1]) ? '' : ask?.[1]}</TableCell>
-                  <TableCell sx={{ color: 'green' }}>{isNaN(ask?.[0]) ? '' : ask?.[0]}</TableCell>
+                  <TableCell sx={{ color: 'white' }}>
+                    {isNaN(ask?.[1]) ? '' : ask?.[1]}
+                  </TableCell>
+                  <TableCell sx={{ color: 'green' }}>
+                    {isNaN(ask?.[0]) ? '' : ask?.[0]}
+                  </TableCell>
                 </TableRow>
               )
             })}
-            <TableRow>
-              <TableCell data-testid='agg-text' sx={{ color: 'white' }}>
-                Aggregation
-              </TableCell>
-              <TableCell>
-                <AggDropdown
-                  aggregation={aggregation}
-                  handleAggChange={handleAggChange}
-                />
-              </TableCell>
-            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
