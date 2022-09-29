@@ -56,8 +56,8 @@ const OrderBook = ({ aggregation, handleAggChange, bidsArr, asksArr }) => {
                 key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell sx={{ color: 'white' }}>{bid[1]}</TableCell>
-                <TableCell sx={{ color: 'red' }}>{bid[0]}</TableCell>
+                <TableCell sx={{ color: 'white' }}>{isNaN(bid?.[1]) ? '' : bid?.[1]}</TableCell>
+                <TableCell sx={{ color: 'red' }}>{isNaN(bid?.[0]) ? '' : bid?.[0]}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -76,8 +76,8 @@ const OrderBook = ({ aggregation, handleAggChange, bidsArr, asksArr }) => {
                   key={index}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell sx={{ color: 'white' }}>{ask[1]}</TableCell>
-                  <TableCell sx={{ color: 'green' }}>{ask[0]}</TableCell>
+                  <TableCell sx={{ color: 'white' }}>{isNaN(ask?.[1]) ? '' : ask?.[1]}</TableCell>
+                  <TableCell sx={{ color: 'green' }}>{isNaN(ask?.[0]) ? '' : ask?.[0]}</TableCell>
                 </TableRow>
               )
             })}
