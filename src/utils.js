@@ -16,3 +16,11 @@ export const priceGrouping = (levelsArr) => {
   })
   return Object.entries(priceSizeMap)
 }
+
+export const groupByAggregation = (levelsArr, aggregation) => {
+  const roundAllPrices = levelsArr?.map((level) => {
+    const roundedPrice = roundToAggregation(level[0], aggregation)
+    return [roundedPrice.toFixed(2), Number(level[1])]
+  })
+  return priceGrouping(roundAllPrices)
+}

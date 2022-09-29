@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { priceGrouping, roundToAggregation } from '../../utils'
+import { groupByAggregation } from '../../utils'
 import { AggDropdown } from '../AggDropdown'
 import {
   Table,
@@ -16,14 +16,6 @@ const OrderBook = ({ aggregation, handleAggChange, bidsArr, asksArr }) => {
   const [bidsRows, setBidsRows] = useState([])
 
   useEffect(() => {
-    const groupByAggregation = (levelsArr, aggregation) => {
-      const roundAllPrices = levelsArr?.map((level) => {
-        const roundedPrice = roundToAggregation(level[0], aggregation)
-        return [roundedPrice.toFixed(2), Number(level[1])]
-      })
-      return priceGrouping(roundAllPrices)
-    }
-
     const groupedAsksArr = groupByAggregation(asksArr, aggregation)
     const groupedBidsArr = groupByAggregation(bidsArr, aggregation)
 
