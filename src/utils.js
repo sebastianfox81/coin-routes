@@ -4,7 +4,7 @@ export const roundToAggregation = (price, aggregation) => {
 
 export const priceGrouping = (levelsArr) => {
   const priceSizeMap = {}
-  levelsArr.forEach((level) => {
+  levelsArr?.forEach((level) => {
     const price = level[0]
     const size = level[1]
     if (priceSizeMap.hasOwnProperty(price)) {
