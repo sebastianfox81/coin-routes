@@ -38,7 +38,7 @@ const OrderBook = ({ aggregation, handleAggChange, bidsArr, asksArr }) => {
 
   return (
     <div style={{ marginBottom: '100px' }}>
-      <TableContainer component={Paper} sx={{ backgroundColor: 'black' }}>
+      <TableContainer component={Paper} sx={{ backgroundColor: 'black', minHeight: '900px' }}>
         <Table aria-label='simple table'>
           <TableHead>
             <TableRow>
