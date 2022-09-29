@@ -34,7 +34,7 @@ const OrderBook = ({ aggregation, handleAggChange, bidsArr, asksArr }) => {
     setBidsRows(bidsRows)
   }, [asksArr, bidsArr, aggregation])
 
-  const spread = bidsRows?.[0]?.[0] - asksRows?.[0]?.[0]
+  const spread = (bidsRows?.[0]?.[0] - asksRows?.[0]?.[0]) || 0
 
   return (
     <div style={{ marginBottom: '100px' }}>
